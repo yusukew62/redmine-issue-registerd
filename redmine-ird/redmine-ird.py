@@ -45,6 +45,7 @@ class RedmineIssueRegisterd(object):
         return 2
 
     def checkAuthentication(self, auth):
+        print "#" * 14 + " Check Authentication " + "#" * 14
         # Checking Authentication
         if auth == 1:
             # case by using Basic Authentication
@@ -55,15 +56,18 @@ class RedmineIssueRegisterd(object):
             self.redmine = Redmine(self.url, key=self.key)
             print 'auth: [SUCCESS] REST API Key Authentication'
 
+        print "#" * 50
+
     def getProjectInfo(self):
         project = self.redmine.project.get('test')
-        print "#" * 20 + " Project Info " + "#" * 20
+        print "#" * 18 + " Project Info " + "#" * 18
 	for i in  project:
           print i[0], ", ", i[1]
 
         print "#" * 50
 
     def getAllProjectInfo(self):
+        print "#" * 16 + " All Project Info " + "#" * 16
         try:
             # response of all project
             projects = self.redmine.project.all()
@@ -74,16 +78,22 @@ class RedmineIssueRegisterd(object):
         except:
             print 'not found'
 
+        print "#" * 50
+
     def getAPI(self):
+        print "#" * 14 + " Project & Wiki Info " + "#" * 14
         try:
             # response of all project
             projects = self.redmine.project.all()
             for project in projects:
                 print 'Project: ' + project.name
-            for wiki_page in project.wiki_pages:
-                wiki_page_details = self.redmine.wiki_page.get(wiki_page.title, project_id=project.id)
+                for wiki_page in project.wiki_pages:
+                    wiki_page_details = self.redmine.wiki_page.get(wiki_page.title, project_id=project.id)
+		    print wiki_page_details
         except:
             print 'not found'
+
+        print "#" * 50
           
     def getMail(self):
         pass
@@ -110,6 +120,7 @@ class RedmineIssueRegisterd(object):
 
     def createIssue(self):
         for data in self.issue_list:
+            print "#" * 18 + " Create issue " + "#" * 18
             try:
                 issue = self.redmine.issue.new()
                 issue.project_id = 'test'
@@ -121,15 +132,44 @@ class RedmineIssueRegisterd(object):
                 issue.assigned_to_id = 1
                 issue.watcher_user_ids = [1]
                 issue.parent_issue_id = 1
-                issue.status_date = datetime.date(2016, 11, 1)
-                issue.due_date = datetime.date(2016, 11, 7)
+                issue.status_date = datetime.date(2017, 1, 1)
+                issue.due_date = datetime.date(2018, 1, 1)
                 issue.estimated_hours = 4
                 issue.done_ration = 40
                 issue.custom_fields = [{'id': 1, 'value': 'foo'}]
-                issue.uploads = [{'path': '/share/test.txt'}]
+#               issue.uploads = [{'path': '/share/test.txt'}]
                 issue.save()
+	        print 'Created'
             except:
-                print 'error'
+                print 'Coudn\'t create'
+
+            print "#" * 50
+
+    def testcreateIssue(self):
+        print "#" * 18 + " Create issue " + "#" * 18
+        try:
+            issue = self.redmine.issue.new()
+            issue.project_id = 'test'
+            issue.subject = 'test subject'
+            issue.tracket_id = 1
+            issue.description = 'test description'
+            issue.status_id = 1
+            issue.priority_id = 1
+            issue.assigned_to_id = 1
+            issue.watcher_user_ids = [1]
+            issue.parent_issue_id = 1
+            issue.status_date = datetime.date(2017, 1, 1)
+            issue.due_date = datetime.date(2018, 1, 1)
+            issue.estimated_hours = 4
+            issue.done_ration = 40
+            issue.custom_fields = [{'id': 1, 'value': 'foo'}]
+#           issue.uploads = [{'path': '/share/test.txt'}]
+            issue.save()
+	    print 'Created'
+        except:
+            print 'Coudn\'t create'
+
+        print "#" * 50
 
     def confirmIssue(self):
         # get latest issue number
@@ -178,6 +218,7 @@ def main():
 #   obj.findMail(mail_path)
 #   obj.parseMail()
 #   obj.createIssue()
+    obj.testcreateIssue()
 #   obj.confirmIssue()
 
     # Operation
