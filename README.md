@@ -6,8 +6,8 @@
 
 ### 動作環境
 
-Language: Python 2.x  
-Platform: LinuxOS  
+Language: Python 2.x    
+Platform: LinuxOS  
 Library: python-redmine  
 
 ### 設定ファイル
@@ -66,7 +66,7 @@ e0288efaf27d        sameersbn/postgresql:9.4-12   "/sbin/entrypoint.sh   2 minut
 
 * WebブラウザからRedmineへアクセス
 
-http://ipaddress:10081/
+http://IPアドレス:10081/
 
 username: admin  
 password: admin  
