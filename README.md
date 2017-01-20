@@ -79,5 +79,7 @@ password: admin
  - APIキーの作成
  
 ### 参考
-
-* [sameersbn/redmine](https://hub.docker.com/r/sameersbn/redmine/#internal-mysql-server)  
+* Docker
+ - [sameersbn/redmine](https://hub.docker.com/r/sameersbn/redmine/#internal-mysql-server)  
+* Library
+ - [Python Redmine](http://python-redmine.readthedocs.io/)
