@@ -7,7 +7,27 @@
 ### 動作環境
 
 Language: Python 2.x  
-Platform: LinuxOS  
+Platform: LinuxOS  
+Library: python-redmine  
+
+### 設定ファイル
+
+* redmine_ird.conf 
+
+```text
+[global]
+target=redmine1
+mail_path=/root/Maildir
+
+[redmine1]
+url=http://192.168.1.34:10083
+username=admin
+password=admin
+key=発行された値
+
+[subject]
+test=[test]
+```
 
 ### テスト
 
