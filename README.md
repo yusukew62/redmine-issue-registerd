@@ -6,8 +6,8 @@
 
 ### 動作環境
 
-Language: Python 2.x
-Platform: LinuxOS
+Language: Python 2.x  
+Platform: LinuxOS  
 
 ### テスト
 
@@ -36,10 +36,21 @@ $ docker run --name=redmine -d \
   sameersbn/redmine:3.2.0-4
 ```
 
-* 稼働確認  
+* コンテナ稼働確認  
 ```bash
 $ docker ps
 CONTAINER ID        IMAGE                         COMMAND                CREATED             STATUS              PORTS                            NAMES
 46ccc3e89fb4        sameersbn/redmine:3.2.0-4     "/sbin/entrypoint.sh   2 minutes ago       Up 2 minutes        443/tcp, 0.0.0.0:10083->80/tcp   redmine
 e0288efaf27d        sameersbn/postgresql:9.4-12   "/sbin/entrypoint.sh   2 minutes ago       Up 2 minutes        5432/tcp                         postgresql-redmine
 ```
+
+* WebブラウザからRedmineへアクセス
+
+http://ipaddress:10081/
+
+username: admin  
+password: admin  
+
+### 参考
+
+* [sameersbn/redmine](https://hub.docker.com/r/sameersbn/redmine/#internal-mysql-server)  
