@@ -49,16 +49,18 @@ class RedmineIssueRegisterd(object):
         if auth == 1:
             # case by using Basic Authentication
             self.redmine = Redmine(self.url, username=self.username, password=self.password)
-            print 'auth: [SUCCESS] Basic Authentication
+            print 'auth: [SUCCESS] Basic Authentication'
         elif auth == 2:
             # case by using REST API Key Authentication
             self.redmine = Redmine(self.url, key=self.key)
-            print 'auth: [SUCCESS] REST API Key Authentication
+            print 'auth: [SUCCESS] REST API Key Authentication'
 
     def getProjectInfo(self):
         project = self.redmine.project.get('test')
         print "#" * 20 + " Project Info " + "#" * 20
-        print i[0], ", ", i[1]
+	for i in  project:
+          print i[0], ", ", i[1]
+
         print "#" * 50
 
     def getAllProjectInfo(self):
@@ -69,7 +71,7 @@ class RedmineIssueRegisterd(object):
                 print 'Project:' + project.name
             for wiki_page in project.wiki_pages:
                 wiki_page_details = self.redmine.wiki_page.get(wiki_page.title, project_id=project.id)
-        excdpt:
+        except:
             print 'not found'
 
     def getAPI(self):
@@ -113,7 +115,7 @@ class RedmineIssueRegisterd(object):
                 issue.project_id = 'test'
                 issue.subject = data['subject']
                 issue.tracket_id = 1
-                issue.description = 'test description
+                issue.description = 'test description'
                 issue.status_id = 1
                 issue.priority_id = 1
                 issue.assigned_to_id = 1
@@ -167,21 +169,21 @@ def main():
 
     # Select Basic Authentication or API Key Authentication
     auth = obj.useBasicAuthentication(url, username, password)
-#   auth = obj.userAPIKeyAuthentication(url, key)
+#   auth = obj.useAPIKeyAuthentication(url, key)
 
     # execute the checking authentication and create auth object of the redmine class
     obj.checkAuthentication(auth)
 
     # find mail
-    obj.findMail(mail_path)
-    obj.parseMail()
-#   obj.createItem()
-    obj.confirmIssue()
+#   obj.findMail(mail_path)
+#   obj.parseMail()
+#   obj.createIssue()
+#   obj.confirmIssue()
 
     # Operation
-#   obj.getProjectInfo()
-#   obj.getAllProjectInfo()
-#   obj.getAPI()
+    obj.getProjectInfo()
+    obj.getAllProjectInfo()
+    obj.getAPI()
 
 
 if __name__ == "__main__":
