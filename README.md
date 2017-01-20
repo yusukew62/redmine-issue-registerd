@@ -51,6 +51,13 @@ http://ipaddress:10081/
 username: admin  
 password: admin  
 
+* redmineで以下を実施
+ - プロジェクトの作成
+ - サービス有効化
+ RESTによるWebサービスを有効にする  
+ JSONPを有効にする  
+ - APIキーの作成
+ 
 ### 参考
 
 * [sameersbn/redmine](https://hub.docker.com/r/sameersbn/redmine/#internal-mysql-server)  
